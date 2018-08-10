@@ -4,13 +4,20 @@
   "version": "1.0.0",
   "author": "Alexei Accio <alexei.accio@gmail.com>",
   "dependencies": {
+    "babel-plugin-emotion": "^9.2.6",
+    "emotion": "^9.2.6",
+    "emotion-server": "^9.2.6",
+    "emotion-theming": "^9.2.6",
     "gatsby": "next",
-    "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-offline": "next",
+    "gatsby-plugin-react-helmet": "next",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.7",
+    "redux-actions": "^2.6.1",
+    "redux-devtools": "^3.4.1"
   },
   "keywords": [
     "gatsby"
@@ -27,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/"
+    "url": "https://github.com/alexeiaccio/abccio"
   }
 }
