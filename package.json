@@ -8,6 +8,8 @@
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
     "emotion-theming": "^9.2.6",
+    "fluture": "^9.0.1",
+    "fluture-sanctuary-types": "^2.2.1",
     "gatsby": "next",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-offline": "next",
@@ -17,7 +19,12 @@
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "redux-actions": "^2.6.1",
-    "redux-devtools": "^3.4.1"
+    "redux-devtools": "^3.4.1",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-fluture": "^0.0.3",
+    "redux-thunk": "^2.3.0",
+    "request-fluture": "https://github.com/alexeiaccio/request-fluture.git",
+    "sanctuary": "^0.15.0"
   },
   "keywords": [
     "gatsby"
