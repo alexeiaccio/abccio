@@ -24,7 +24,8 @@
     "redux-fluture": "^0.0.3",
     "redux-thunk": "^2.3.0",
     "request-fluture": "https://github.com/alexeiaccio/request-fluture.git",
-    "sanctuary": "^0.15.0"
+    "sanctuary": "^0.15.0",
+    "sanctuary-def": "^0.18.1"
   },
   "keywords": [
     "gatsby"

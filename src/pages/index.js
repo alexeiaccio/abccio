@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { makeSuggestion } from '../state/actions'
 import Layout from '../components/layout'
-import { hasLength } from '../helpers'
+import { hasLength, fromCyrilicToLatin } from '../helpers'
 
 const IndexPage = connect(
   ({ error, suggestions }) => ({ error, suggestions }),
@@ -16,7 +16,7 @@ const IndexPage = connect(
       <input 
         type="text" 
         placeholder="Print here..."
-        onChange={(e) => makeSuggestion(e.target.value)}
+        onChange={(e) => makeSuggestion(fromCyrilicToLatin(e.target.value))}
       />
       <button 
       >Now go build something great.</button>
