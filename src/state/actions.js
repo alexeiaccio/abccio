@@ -1,26 +1,28 @@
 import { createActions } from 'redux-actions'
-import { getSuggestion } from '../api'
-import { futureOfArray, hasLength, ifElse, Future } from '../helpers'
-
-const safeSuggestion = ifElse(hasLength)(getSuggestion)(futureOfArray)
+import { safeSuggestion } from '../api'
+import { Future } from '../helpers'
 
 const { errorMessage, suggestion } = createActions(
   'ERROR_MESSAGE',
   'SUGGESTION'
 )
 
+const makeError = dispatch => err => {
+  dispatch(errorMessage(err.message))
+  Future.after(4000, errorMessage(''))
+  .fork(
+    err => dispatch(errorMessage(err.message)),
+    dispatch
+  )
+}
+
 export const makeSuggestion = payload =>
   dispatch => {
     dispatch(suggestion([{ word: payload }]))
     safeSuggestion(payload)
       .fork(
-        err => dispatch(errorMessage(err.message)),
+        makeError(dispatch),
         res => dispatch(suggestion(res))
-      )
-      Future.after(4000, errorMessage(''))
-      .fork(
-        err => dispatch(errorMessage(err.message)),
-        dispatch
       )
   }
   
