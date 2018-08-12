@@ -1,19 +1,17 @@
 import { createActions } from 'redux-actions'
-import { Future, request } from '../helpers'
-const { encase } = Future
+import { getSuggestion } from '../api'
+import { futureOfArray, hasLength, ifElse } from '../helpers'
 
-const { poop } = createActions('POOP')
+const safeSuggestion = ifElse(hasLength)(getSuggestion)(futureOfArray)
 
-const getPoop = word => request(`https://api.datamuse.com/words?ml=${word}&max=10`)
-  .map(res => res.body)
-  .chain(encase(JSON.parse))
+const { suggestion } = createActions('SUGGESTION')
 
-export const makePoop = payload =>
+export const makeSuggestion = payload =>
   dispatch => {
-    dispatch(poop([payload]))
-    getPoop(payload)
+    dispatch(suggestion([{ word: payload }]))
+    safeSuggestion(payload)
       .fork(console.error, 
-        res => dispatch(poop(res))
+        res => dispatch(suggestion(res))
       )
   }
   

@@ -8,8 +8,15 @@ const S = create({
   env: env.concat(flutureEnv)
 })
 
+export const {
+  compose, gt, ifElse, prop
+} = S
+
 export {
  Future,
  request,
- S
+ S,
 }
+
+export const hasLength = compose(gt(0))(prop('length'))
+export const futureOfArray = compose(Future.of)(Array.from)
