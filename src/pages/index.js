@@ -4,11 +4,12 @@ import { connect } from 'react-redux'
 
 import { makeSuggestion } from '../state/actions'
 import Layout from '../components/layout'
+import { hasLength } from '../helpers'
 
 const IndexPage = connect(
-  ({ suggestions }) => ({ suggestions }),
+  ({ error, suggestions }) => ({ error, suggestions }),
   { makeSuggestion }
-)(({ makeSuggestion, suggestions }) => {  
+)(({ error, makeSuggestion, suggestions }) => {  
   return (
     <Layout>
       <h1>Hi people</h1>
@@ -26,6 +27,9 @@ const IndexPage = connect(
           <span key={score}> { score }</span>
         </p>
       )}
+      {hasLength(error) &&
+        <p>{ error }</p>
+      }
       </div>
     </Layout>
   )

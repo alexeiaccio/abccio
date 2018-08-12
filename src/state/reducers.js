@@ -1,15 +1,20 @@
 import { handleActions } from 'redux-actions'
-import { S } from '../helpers'
-const { insert } = S
 
 const initialState = {
+  error: '',
   suggestions: [{}],
 } 
 
 export const reducers = handleActions(
   {
-    SUGGESTION: (state, action) => 
-      insert('suggestions')(action.payload)(state),
+    ERROR_MESSAGE: (state, action) => ({
+      ...state,
+      error: action.payload
+    }),
+    SUGGESTION: (state, action) => ({
+      ...state,
+      suggestions: action.payload
+    }),
   },
   initialState
 )
