@@ -9,27 +9,27 @@ import { hasLength, fromCyrilicToLatin } from '../helpers'
 const IndexPage = connect(
   ({ error, suggestions }) => ({ error, suggestions }),
   { makeSuggestion }
-)(({ error, makeSuggestion, suggestions }) => {  
+)(({ error, makeSuggestion, suggestions }) => {
   return (
     <Layout>
       <h1>Hi people</h1>
-      <input 
-        type="text" 
+      <input
+        type="text"
         placeholder="Print here..."
-        onChange={(e) => makeSuggestion(fromCyrilicToLatin(e.target.value))}
+        onChange={e => makeSuggestion(fromCyrilicToLatin(e.target.value))}
       />
-      <button 
-      >Now go build something great.</button>
+      <button>Now go build something great.</button>
       <div>
-      {suggestions && suggestions.map(({ word, score }, i) =>
-        <p key={i}>
-          <Link key={word} to={`/`}>{ word }</Link>
-          <span key={score}> { score }</span>
-        </p>
-      )}
-      {hasLength(error) &&
-        <p>{ error }</p>
-      }
+        {suggestions &&
+          suggestions.map(({ word, score }, i) => (
+            <p key={i}>
+              <Link key={word} to={`/`}>
+                {word}
+              </Link>
+              <span key={score}> {score}</span>
+            </p>
+          ))}
+        {hasLength(error) && <p>{error}</p>}
       </div>
     </Layout>
   )

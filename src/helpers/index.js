@@ -1,18 +1,13 @@
 import Future from 'fluture'
 import request from 'request-fluture'
-import {
-  env as flutureEnv
-} from 'fluture-sanctuary-types'
-import {
-  create,
-  env
-} from 'sanctuary'
+import { env as flutureEnv } from 'fluture-sanctuary-types'
+import { create, env } from 'sanctuary'
 import $ from 'sanctuary-def'
 import cyrilicToLatin from './cyrilicToLatin'
 
 const S = create({
   checkTypes: true,
-  env: env.concat(flutureEnv)
+  env: env.concat(flutureEnv),
 })
 
 export const {
@@ -29,14 +24,10 @@ export const {
   prop,
   splitOn,
   test,
-  unless
+  unless,
 } = S
 
-export {
-  Future,
-  request,
-  S,
-}
+export { Future, request, S }
 
 export const hasLength = compose(gt(0))(prop('length'))
 export const futureOfArray = compose(Future.of)(Array.from)
@@ -47,7 +38,7 @@ const trslt = library =>
       splitOn(''),
       map(flip(get(is($.String)))(library)),
       map(fromMaybe('')),
-      joinWith('')
+      joinWith(''),
     ])
   )
 
