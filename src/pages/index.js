@@ -1,15 +1,21 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { connect } from 'react-redux'
 
-import { makeSuggestion } from '../state/actions'
+import { makeLyrics, makeSuggestion } from '../state/actions'
 import Layout from '../components/layout'
-import { hasLength, fromCyrilicToLatin } from '../helpers'
+import {
+  fromCyrilicToLatin,
+  hasLength,
+  randomNum,
+  randomWord,
+  stringHead,
+  R,
+} from '../helpers'
 
 const IndexPage = connect(
-  ({ error, suggestions }) => ({ error, suggestions }),
-  { makeSuggestion }
-)(({ error, makeSuggestion, suggestions }) => {
+  ({ error, lyrics, suggestions }) => ({ error, lyrics, suggestions }),
+  { makeLyrics, makeSuggestion }
+)(({ error, lyrics, makeLyrics, makeSuggestion, suggestions }) => {
   return (
     <Layout>
       <h1>Hi people</h1>
@@ -23,13 +29,20 @@ const IndexPage = connect(
         {suggestions &&
           suggestions.map(({ word, score }, i) => (
             <p key={i}>
-              <Link key={word} to={`/`}>
+              <span key={word} onClick={() => makeLyrics(word)}>
                 {word}
-              </Link>
+              </span>
               <span key={score}> {score}</span>
             </p>
           ))}
         {hasLength(error) && <p>{error}</p>}
+        {hasLength(lyrics) &&
+          R.drop(1, lyrics).map(xs => (
+            <>
+              <h2 key={randomNum(xs)}>{stringHead(randomWord(xs))}</h2>
+              <p key={randomWord(xs)}>{randomWord(xs)}</p>
+            </>
+          ))}
       </div>
     </Layout>
   )

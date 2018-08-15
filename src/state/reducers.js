@@ -1,20 +1,22 @@
 import { handleActions } from 'redux-actions'
+import { assoc, concat, mergeWith } from '../helpers'
 
 const initialState = {
   error: '',
+  lyrics: [],
   suggestions: [{}],
-} 
+  word: '',
+}
 
 export const reducers = handleActions(
   {
-    ERROR_MESSAGE: (state, action) => ({
-      ...state,
-      error: action.payload
-    }),
-    SUGGESTION: (state, action) => ({
-      ...state,
-      suggestions: action.payload
-    }),
+    ERROR_MESSAGE: (state, action) => assoc('error', action.payload, state),
+    LYRICS: (state, action) =>
+      action.payload === null
+        ? assoc('lyrics', [], state)
+        : mergeWith(concat, state, { lyrics: action.payload }),
+    SUGGESTION: (state, action) => assoc('suggestions', action.payload, state),
+    WORD: (state, action) => assoc('word', action.payload, state),
   },
   initialState
 )

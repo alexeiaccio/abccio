@@ -1,28 +1,51 @@
 import { createActions } from 'redux-actions'
-import { safeSuggestion } from '../api'
-import { Future } from '../helpers'
+import { safeLyrics, safeSuggestion } from '../api'
+import {
+  chain,
+  Future,
+  pipe,
+  randomWord,
+  stringHead,
+  splitString,
+} from '../helpers'
 
-const { errorMessage, suggestion } = createActions(
+const lyricsFactory = payload => x => dispatch =>
+  safeLyrics(payload)(x).map(res => {
+    dispatch(lyrics([res]))
+    return res
+  })
+
+const factoryMapping = payload => dispatch => fn =>
+  pipe(
+    splitString(payload).map(x => chain(y => fn(randomWord(y))(x)(dispatch)))
+  )
+
+const { errorMessage, lyrics, suggestion, word } = createActions(
   'ERROR_MESSAGE',
-  'SUGGESTION'
+  'LYRICS',
+  'SUGGESTION',
+  'WORD'
 )
 
-const makeError = dispatch => err => {
+export const makeError = dispatch => err => {
   dispatch(errorMessage(err.message))
-  Future.after(4000, errorMessage(''))
-  .fork(
+  Future.after(4000, errorMessage('')).fork(
     err => dispatch(errorMessage(err.message)),
     dispatch
   )
 }
 
-export const makeSuggestion = payload =>
-  dispatch => {
-    dispatch(suggestion([{ word: payload }]))
-    safeSuggestion(payload)
-      .fork(
-        makeError(dispatch),
-        res => dispatch(suggestion(res))
-      )
-  }
-  
+export const makeLyrics = payload => dispatch => {
+  dispatch(word(payload))
+  dispatch(lyrics(null))
+  factoryMapping(payload)(dispatch)(lyricsFactory)(
+    lyricsFactory(payload)(stringHead(payload))(dispatch)
+  ).fork(makeError(dispatch), console.log)
+}
+
+export const makeSuggestion = payload => dispatch => {
+  dispatch(suggestion([{ word: payload }]))
+  safeSuggestion(payload).fork(makeError(dispatch), res =>
+    dispatch(suggestion(res))
+  )
+}
