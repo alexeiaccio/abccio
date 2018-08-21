@@ -2,22 +2,27 @@ import { createActions } from 'redux-actions'
 import { safeLyrics, safeSuggestion } from '../api'
 import {
   chain,
+  F,
   Future,
   pipe,
   randomWord,
   stringHead,
   splitString,
+  trimString,
+  trimSpace,
 } from '../helpers'
 
 const lyricsFactory = payload => x => dispatch =>
-  safeLyrics(payload)(x).map(res => {
+  safeLyrics(trimString(payload))(x).map(res => {
     dispatch(lyrics([res]))
     return res
   })
 
 const factoryMapping = payload => dispatch => fn =>
   pipe(
-    splitString(payload).map(x => chain(y => fn(randomWord(y))(x)(dispatch)))
+    splitString(trimSpace(payload)).map(x =>
+      chain(y => fn(randomWord(y))(x)(dispatch))
+    )
   )
 
 const { errorMessage, lyrics, suggestion, word } = createActions(
@@ -40,7 +45,7 @@ export const makeLyrics = payload => dispatch => {
   dispatch(lyrics(null))
   factoryMapping(payload)(dispatch)(lyricsFactory)(
     lyricsFactory(payload)(stringHead(payload))(dispatch)
-  ).fork(makeError(dispatch), console.log)
+  ).fork(makeError(dispatch), F)
 }
 
 export const makeSuggestion = payload => dispatch => {

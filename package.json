@@ -5,15 +5,19 @@
   "author": "Alexei Accio <alexei.accio@gmail.com>",
   "dependencies": {
     "babel-plugin-emotion": "^9.2.6",
+    "babel-plugin-tailwind": "^0.1.10",
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
     "emotion-theming": "^9.2.6",
     "fluture": "^9.0.1",
     "fluture-sanctuary-types": "^2.2.1",
     "gatsby": "next",
+    "gatsby-plugin-emotion": "^1.1.17",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-offline": "next",
     "gatsby-plugin-react-helmet": "next",
+    "postcss": "^7.0.2",
+    "postcss-cli": "^6.0.0",
     "ramda": "^0.25.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -26,17 +30,22 @@
     "redux-fluture": "^0.0.3",
     "redux-thunk": "^2.3.0",
     "request-fluture": "https://github.com/alexeiaccio/request-fluture.git",
+    "rimraf": "^2.6.2",
     "sanctuary": "^0.15.0",
-    "sanctuary-def": "^0.18.1"
+    "sanctuary-def": "^0.18.1",
+    "tailwindcss": "^0.6.5",
+    "uuid": "^3.3.2"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "rimraf tailwind.custom.css && postcss tailwind.css -o tailwind.custom.css && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
+    "predevelop": "rimraf tailwind.custom.css && postcss tailwind.css -o tailwind.custom.css",
+    "serve": "gatsby serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

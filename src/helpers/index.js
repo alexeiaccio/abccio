@@ -4,6 +4,7 @@ import * as R from 'ramda'
 import request from 'request-fluture'
 import { create, env } from 'sanctuary'
 import $ from 'sanctuary-def'
+import * as uuid from 'uuid/v1'
 
 import cyrilicToLatin from './cyrilicToLatin'
 
@@ -12,7 +13,7 @@ const S = create({
   env: env.concat(flutureEnv),
 })
 
-export const { assoc, concat, mergeWith } = R
+export const { assoc, concat, empty, F, mergeWith, replace } = R
 
 export const {
   chain,
@@ -31,17 +32,10 @@ export const {
   splitOn,
   test,
   unless,
+  words,
 } = S
 
-export { Future, request, R, S, $ }
-
-export const hasLength = pipe([
-  get(is($.Number))('length'),
-  fromMaybe(0),
-  gt(0),
-])
-
-export const futureOfArray = compose(Future.of)(Array.from)
+export { Future, request, R, S, uuid, $ }
 
 const trslt = library =>
   unless(test(/[a-zA-Z0-9]/))(
@@ -54,8 +48,26 @@ const trslt = library =>
   )
 
 export const fromCyrilicToLatin = trslt(cyrilicToLatin)
+
+export const futureOfArray = compose(Future.of)(Array.from)
+
+export const gtFour = pipe([get(is($.Number))('length'), fromMaybe(0), gt(3)])
+
+export const hasLength = pipe([
+  get(is($.Number))('length'),
+  fromMaybe(0),
+  gt(0),
+])
+
 export const randomNum = max => Math.floor(Math.random() * max)
+
 export const randomWord = xs =>
   R.pathOr('', [randomNum(S.size(xs)), 'word'], xs)
+
 export const stringHead = pipe([splitOn(''), head, fromMaybe('')])
+
 export const splitString = splitOn('')
+
+export const trimSpace = replace(/\s|-/, empty)
+
+export const trimString = pipe([words, head, fromMaybe(''), trimSpace])

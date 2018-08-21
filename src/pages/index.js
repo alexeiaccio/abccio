@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import { makeLyrics, makeSuggestion } from '../state/actions'
@@ -6,10 +6,10 @@ import Layout from '../components/layout'
 import {
   fromCyrilicToLatin,
   hasLength,
-  randomNum,
   randomWord,
   stringHead,
   R,
+  uuid,
 } from '../helpers'
 
 const IndexPage = connect(
@@ -27,21 +27,21 @@ const IndexPage = connect(
       <button>Now go build something great.</button>
       <div>
         {suggestions &&
-          suggestions.map(({ word, score }, i) => (
-            <p key={i}>
-              <span key={word} onClick={() => makeLyrics(word)}>
+          suggestions.map(({ word, score }) => (
+            <p key={uuid()}>
+              <span key={uuid()} onClick={() => makeLyrics(word)}>
                 {word}
               </span>
-              <span key={score}> {score}</span>
+              <span key={uuid()}> {score}</span>
             </p>
           ))}
         {hasLength(error) && <p>{error}</p>}
         {hasLength(lyrics) &&
           R.drop(1, lyrics).map(xs => (
-            <>
-              <h2 key={randomNum(xs)}>{stringHead(randomWord(xs))}</h2>
-              <p key={randomWord(xs)}>{randomWord(xs)}</p>
-            </>
+            <Fragment key={uuid()}>
+              <h2 key={uuid()}>{stringHead(randomWord(xs))}</h2>
+              <p key={uuid()}>{randomWord(xs)}</p>
+            </Fragment>
           ))}
       </div>
     </Layout>
