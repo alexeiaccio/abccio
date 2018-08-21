@@ -23,6 +23,7 @@ export const {
   get,
   gt,
   head,
+  I,
   ifElse,
   is,
   joinWith,
@@ -51,7 +52,7 @@ export const fromCyrilicToLatin = trslt(cyrilicToLatin)
 
 export const futureOfArray = compose(Future.of)(Array.from)
 
-export const gtFour = pipe([get(is($.Number))('length'), fromMaybe(0), gt(3)])
+export const gtTen = pipe([get(is($.Number))('length'), fromMaybe(0), gt(9)])
 
 export const hasLength = pipe([
   get(is($.Number))('length'),

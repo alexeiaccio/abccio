@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'ABC Poetry',
   },
   plugins: [
     'gatsby-plugin-emotion',

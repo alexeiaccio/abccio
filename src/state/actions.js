@@ -2,7 +2,6 @@ import { createActions } from 'redux-actions'
 import { safeLyrics, safeSuggestion } from '../api'
 import {
   chain,
-  F,
   Future,
   pipe,
   randomWord,
@@ -45,7 +44,7 @@ export const makeLyrics = payload => dispatch => {
   dispatch(lyrics(null))
   factoryMapping(payload)(dispatch)(lyricsFactory)(
     lyricsFactory(payload)(stringHead(payload))(dispatch)
-  ).fork(makeError(dispatch), F)
+  ).fork(makeError(dispatch), console.log)
 }
 
 export const makeSuggestion = payload => dispatch => {

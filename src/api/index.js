@@ -1,7 +1,7 @@
 import {
+  concat,
   Future,
   futureOfArray,
-  gtFour,
   hasLength,
   ifElse,
   request,
@@ -15,7 +15,7 @@ const getFabric = type => word => char =>
     .map(res => res.body)
     .chain(encase(JSON.parse))
 
-const getAproximateRhymes = getFabric('rel_nry')
+const getFollowers = getFabric('rel_bga')
 
 const getTriggers = getFabric('rel_trg')
 
@@ -31,22 +31,19 @@ const getSpelledLike = word => char =>
     .map(res => res.body)
     .chain(encase(JSON.parse))
 
+export const safeLyrics = word => char =>
+  Future.of(a => b => c => d => e => f => concat(a, b, c, d, e, f))
+    .ap(getTriggers(word)(char))
+    .ap(getRhymes(word)(char))
+    .ap(getFollowers(word)(char))
+    .ap(getHomophone(word)(char))
+    .ap(getSoundLike(word)(char))
+    .ap(getSpelledLike(word)(char))
+
 const getSuggestion = input =>
   request(`${API}sug?s=${input}&max=10`)
     .race(rejectAfter(1000, 'Timout error'))
     .map(res => res.body)
     .chain(encase(JSON.parse))
-
-export const safeLyrics = word => char =>
-  getTriggers(word)(char)
-    .chain(json => (gtFour(json) ? Future.of(json) : getRhymes(word)(char)))
-    .chain(
-      json => (gtFour(json) ? Future.of(json) : getAproximateRhymes(word)(char))
-    )
-    .chain(json => (gtFour(json) ? Future.of(json) : getHomophone(word)(char)))
-    .chain(json => (gtFour(json) ? Future.of(json) : getSoundLike(word)(char)))
-    .chain(
-      json => (gtFour(json) ? Future.of(json) : getSpelledLike(word)(char))
-    )
 
 export const safeSuggestion = ifElse(hasLength)(getSuggestion)(futureOfArray)
