@@ -1,7 +1,17 @@
-exports.onCreateBabelConfig = ({ actions }) =>
-  actions.setBabelPlugin({
-    name: 'babel-plugin-tailwind',
-  })
+exports.onCreateBabelConfig = ({ actions }, pluginOptions) => {
+  actions.setBabelPlugin(
+    {
+      name: 'babel-plugin-tailwind',
+    },
+    {
+      name: `babel-plugin-emotion`,
+      options: {
+        sourceMap: process.env.NODE_ENV === `production` ? false : true,
+        ...(pluginOptions ? pluginOptions : {}),
+      },
+    }
+  )
+}
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({

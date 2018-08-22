@@ -2,6 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { extractCritical } from 'emotion-server'
+
 import createStore from './src/state'
 
 export const replaceRenderer = ({
@@ -9,14 +10,12 @@ export const replaceRenderer = ({
   replaceBodyHTMLString,
   setHeadComponents,
 }) => {
+  /* redux */
   const store = createStore()
 
-  // Connect Redux store
-  const ConnectedBody = () => (
-    <Provider store={store}>{bodyComponent}</Provider>
-  )
+  const ConnectedBody = () => <Provider store={store}>{bodyComponent}</Provider>
 
-  // SSR for emotion
+  /* emotion */
   const { html, ids, css } = extractCritical(renderToString(<ConnectedBody />))
 
   /* eslint-disable react/no-danger */
@@ -28,6 +27,7 @@ export const replaceRenderer = ({
       }}
     />
   )
+
   setHeadComponents([criticalIds, criticalStyle])
   replaceBodyHTMLString(html)
 }

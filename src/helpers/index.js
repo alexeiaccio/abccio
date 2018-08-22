@@ -13,7 +13,7 @@ const S = create({
   env: env.concat(flutureEnv),
 })
 
-export const { assoc, concat, empty, F, mergeWith, replace } = R
+export const { assoc, concat, empty, F, length, mergeWith, pair, replace } = R
 
 export const {
   chain,

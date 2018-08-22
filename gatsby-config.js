@@ -3,7 +3,6 @@ module.exports = {
     title: 'ABC Poetry',
   },
   plugins: [
-    'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-manifest`,
