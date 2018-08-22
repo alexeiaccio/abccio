@@ -1,11 +1,12 @@
 import Future from 'fluture'
 import { env as flutureEnv } from 'fluture-sanctuary-types'
 import * as R from 'ramda'
+import { mapPropsStreamWithConfig } from 'recompose'
+import kefirConfig from 'recompose/kefirObservableConfig'
 import request from 'request-fluture'
 import { create, env } from 'sanctuary'
 import $ from 'sanctuary-def'
 import * as uuid from 'uuid/v1'
-
 import cyrilicToLatin from './cyrilicToLatin'
 
 const S = create({
@@ -37,6 +38,8 @@ export const {
 } = S
 
 export { Future, request, R, S, uuid, $ }
+
+export const mapPropsStream = mapPropsStreamWithConfig(kefirConfig)
 
 const trslt = library =>
   unless(test(/[a-zA-Z0-9]/))(
