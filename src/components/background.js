@@ -25,7 +25,7 @@ const animation = {
   `,
   1: keyframes`
     from {
-      opacity: 0
+      opacity: .01
     }
     to {
       opacity: .99

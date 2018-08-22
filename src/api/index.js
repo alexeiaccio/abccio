@@ -1,7 +1,7 @@
 import {
-  concat,
   Future,
   futureOfArray,
+  gtTen,
   hasLength,
   ifElse,
   request,
@@ -15,11 +15,11 @@ const getFabric = type => word => char =>
     .map(res => res.body)
     .chain(encase(JSON.parse))
 
-const getFollowers = getFabric('rel_bga')
+//const getFollowers = getFabric('rel_bga')
 
 const getTriggers = getFabric('rel_trg')
 
-const getHomophone = getFabric('rel_hom')
+//const getHomophone = getFabric('rel_hom')
 
 const getRhymes = getFabric('rel_rhy')
 
@@ -32,13 +32,25 @@ const getSpelledLike = word => char =>
     .chain(encase(JSON.parse))
 
 export const safeLyrics = word => char =>
-  Future.of(a => b => c => d => e => f => concat(a, b, c, d, e, f))
-    .ap(getTriggers(word)(char))
-    .ap(getRhymes(word)(char))
-    .ap(getFollowers(word)(char))
-    .ap(getHomophone(word)(char))
-    .ap(getSoundLike(word)(char))
-    .ap(getSpelledLike(word)(char))
+  getTriggers(word)(char)
+    .chain(
+      res =>
+        gtTen(res)
+          ? Future.of(res)
+          : getRhymes(word)(char).map(x => x.concat(res))
+    )
+    .chain(
+      res =>
+        gtTen(res)
+          ? Future.of(res)
+          : getSoundLike(word)(char).map(x => x.concat(res))
+    )
+    .chain(
+      res =>
+        gtTen(res)
+          ? Future.of(res)
+          : getSpelledLike(word)(char).map(x => x.concat(res))
+    )
 
 const getSuggestion = input =>
   request(`${API}sug?s=${input}&max=10`)
