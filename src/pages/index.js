@@ -1,12 +1,13 @@
 /* global tw */
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { css } from 'react-emotion'
+import styled, { css } from 'react-emotion'
 
 import {
   fromCyrilicToLatin,
   hasLength,
   randomWord,
+  splitString,
   stringHead,
   R,
   uuid,
@@ -14,19 +15,42 @@ import {
 import Layout from '../components/layout'
 import { makeLyrics, makeSuggestion } from '../state/actions'
 
+const Heading = styled('h1')`
+  ${tw(['relative', 'uppercase'])};
+  &:after {
+    ${tw(['absolute', 'block', 'text-list', 'text-white', 'tracking-wide'])};
+    content: 'beta';
+    right: calc(1% - 3.5rem);
+    top: calc(20% - 0.5rem);
+  }
+`
+
 const IndexPage = connect(
   ({ error, lyrics, suggestions }) => ({ error, lyrics, suggestions }),
   { makeLyrics, makeSuggestion }
 )(({ error, lyrics, makeLyrics, makeSuggestion, suggestions }) => {
   return (
     <Layout>
-      <h1
-        className={css`
-          ${tw('font-accio')};
-        `}
-      >
-        Hi people
-      </h1>
+      <Heading>
+        <span
+          className={css`
+            ${tw('font-accio text-heading0 text-white ')};
+          `}
+        >
+          abc
+        </span>
+        <small
+          className={css`
+            ${tw(
+              'flex font-semibold justify-between text-indigo-darkest text-heading5'
+            )};
+          `}
+        >
+          {splitString('poetry').map(char => (
+            <span key={uuid()}>{char}</span>
+          ))}
+        </small>
+      </Heading>
       <input
         type="text"
         placeholder="Print here..."

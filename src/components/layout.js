@@ -20,7 +20,7 @@ injectGlobal`
   }
 
   body {
-    ${tw(['m-0', 'font-montserrat'])};
+    ${tw(['m-0', 'font-montserrat', 'font-semibold'])};
   }
 `
 
