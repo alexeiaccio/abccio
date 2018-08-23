@@ -255,7 +255,7 @@ const IndexPage = connect(
           <Container>
             <div
               className={css`
-                ${tw(['flex flex-col items-start'])};
+                ${tw('flex flex-col items-start text-white')};
               `}
             >
               {splitString(trimSpace(word)).map((char, i) => (
