@@ -274,6 +274,7 @@ const IndexPage = connect(
                       ${tw('font-accio text-heading5 uppercase')};
                     `}
                     key={uuid()}
+                    title={R.drop(1, lyrics)[i].word}
                   >
                     {R.drop(1, lyrics)[i].word}
                   </span>
