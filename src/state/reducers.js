@@ -1,10 +1,10 @@
 import { handleActions } from 'redux-actions'
-import { assoc, concat, mergeWith } from '../helpers'
+import { assoc, concat, mergeWith, mockSuggestion } from '../helpers'
 
 const initialState = {
   error: '',
   lyrics: [],
-  suggestions: [{}],
+  suggestions: mockSuggestion,
   word: '',
 }
 

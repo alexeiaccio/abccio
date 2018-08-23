@@ -63,7 +63,9 @@ const trslt = library =>
 
 export const fromCyrilicToLatin = trslt(cyrilicToLatin)
 
-export const futureOfArray = compose(Future.of)(Array.from)
+export const mockSuggestion = R.repeat({ word: ' ' }, 5)
+
+export const futureOfArray = () => Future.of(mockSuggestion)
 
 export const gtTen = pipe([get(is($.Number))('length'), fromMaybe(0), gt(9)])
 

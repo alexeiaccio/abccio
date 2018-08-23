@@ -26,7 +26,7 @@ const getRhymes = getFabric('rel_rhy')
 const getSoundLike = getFabric('sl')
 
 const getSpelledLike = word => char =>
-  request(`${API}words?sp=${char}*&topics=${word}&qe=topics&md=p&max=10`)
+  request(`${API}words?sp=${char}*&topics=${word}&md=p&max=10`)
     .race(rejectAfter(1000, 'Timout error'))
     .map(res => res.body)
     .chain(encase(JSON.parse))
@@ -65,7 +65,7 @@ export const safeLyrics = word => char =>
     )
 
 const getSuggestion = input =>
-  request(`${API}sug?s=${input}&max=10`)
+  request(`${API}sug?s=${input}&max=5`)
     .race(rejectAfter(1000, 'Timout error'))
     .map(res => res.body)
     .chain(encase(JSON.parse))

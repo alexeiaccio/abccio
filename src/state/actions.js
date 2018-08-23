@@ -48,7 +48,6 @@ export const makeLyrics = payload => dispatch => {
 }
 
 export const makeSuggestion = payload => dispatch => {
-  dispatch(suggestion([{ word: payload }]))
   safeSuggestion(payload).fork(makeError(dispatch), res =>
     dispatch(suggestion(res))
   )
