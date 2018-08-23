@@ -8,7 +8,6 @@ import {
   hasLength,
   randomWord,
   splitString,
-  stringHead,
   R,
   uuid,
 } from '../helpers'
@@ -17,7 +16,9 @@ import {
   letsGo,
   makeLyrics,
   makeSuggestion,
+  nextLetter,
   resetLyrics,
+  toLast,
 } from '../state/actions'
 
 const Container = styled('div')`
@@ -44,26 +45,32 @@ const loading = keyframes`
 `
 
 const IndexPage = connect(
-  ({ error, formValue, go, lyrics, suggestions, word }) => ({
+  ({ current, error, formValue, go, last, lyrics, suggestions, word }) => ({
+    current,
     error,
     formValue,
     go,
+    last,
     lyrics,
     suggestions,
     word,
   }),
-  { letsGo, makeLyrics, makeSuggestion, resetLyrics }
+  { letsGo, makeLyrics, makeSuggestion, nextLetter, resetLyrics, toLast }
 )(
   ({
+    current,
     error,
     formValue,
     go,
+    last,
     letsGo,
     lyrics,
     makeLyrics,
     makeSuggestion,
+    nextLetter,
     resetLyrics,
     suggestions,
+    toLast,
     word,
   }) => {
     return (
@@ -200,12 +207,40 @@ const IndexPage = connect(
         {hasLength(error) && <p>{error}</p>}
         {hasLength(lyrics) &&
           go &&
-          R.drop(1, lyrics).map(xs => (
-            <Container key={uuid()}>
-              <h2 key={uuid()}>{stringHead(randomWord(xs))}</h2>
-              <p key={uuid()}>{randomWord(xs)}</p>
+          !last && (
+            <Container>
+              <h2
+                className={css`
+                  ${tw(
+                    'font-accio cursor-pointer text-heading0 text-white hover:text-pink uppercase'
+                  )};
+                `}
+                onClick={() =>
+                  current < R.length(word) - 1 ? nextLetter() : toLast(true)
+                }
+              >
+                {splitString(word)[current]}
+              </h2>
+              <p>is for</p>
+              <p
+                className={css`
+                  ${tw('font-accio text-heading2 uppercase')};
+                `}
+              >
+                {randomWord(R.drop(1, lyrics)[current])}
+              </p>
             </Container>
-          ))}
+          )}
+        {last && (
+          <Container>
+            {splitString(word).map((char, i) => (
+              <p key={uuid()}>
+                <span key={uuid()}>{char}</span> is for{' '}
+                <span key={uuid()}>{randomWord(R.drop(1, lyrics)[i])}</span>
+              </p>
+            ))}
+          </Container>
+        )}
       </Layout>
     )
   }

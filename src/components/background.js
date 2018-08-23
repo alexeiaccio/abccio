@@ -34,7 +34,7 @@ const animation = {
 }
 
 const StyledBackground = styled('div')`
-  ${tw(['absolute', 'pin', 'bg-indigo-darkest'])};
+  ${tw(['fixed', 'pin', 'bg-indigo-darkest'])};
   animation: ${({ i }) => animation[i]} 12000ms linear;
 `
 

@@ -25,10 +25,21 @@ const factoryMapping = payload => dispatch => fn =>
     )
   )
 
-const { errorMessage, formValue, go, lyrics, suggestion, word } = createActions(
+const {
+  current,
+  errorMessage,
+  formValue,
+  go,
+  last,
+  lyrics,
+  suggestion,
+  word,
+} = createActions(
+  'CURRENT',
   'ERROR_MESSAGE',
   'FORM_VALUE',
   'GO',
+  'LAST',
   'LYRICS',
   'SUGGESTION',
   'WORD'
@@ -61,7 +72,15 @@ export const makeSuggestion = payload => dispatch => {
   )
 }
 
+export const nextLetter = () => dispatch => {
+  dispatch(current())
+}
+
 export const resetLyrics = () => dispatch => {
   dispatch(word(''))
   dispatch(suggestion(mockSuggestion))
+}
+
+export const toLast = payload => dispatch => {
+  dispatch(last(payload))
 }
