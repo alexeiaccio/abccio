@@ -1,5 +1,13 @@
 import { handleActions } from 'redux-actions'
-import { assoc, concat, mergeWith, mockSuggestion, R } from '../helpers'
+import {
+  assoc,
+  concat,
+  mergeWith,
+  mockSuggestion,
+  R,
+  randomNum,
+  S,
+} from '../helpers'
 
 const initialState = {
   current: 0,
@@ -29,7 +37,9 @@ export const reducers = handleActions(
     LYRICS: (state, action) =>
       action.payload === null
         ? assoc('lyrics', [], state)
-        : mergeWith(concat, state, { lyrics: action.payload }),
+        : mergeWith(concat, state, {
+            lyrics: [action.payload[0][randomNum(S.size(action.payload[0]))]],
+          }),
     SUGGESTION: (state, action) => assoc('suggestions', action.payload, state),
     WORD: (state, action) => assoc('word', action.payload, state),
   },

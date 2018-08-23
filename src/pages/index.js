@@ -3,20 +3,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled, { css, keyframes } from 'react-emotion'
 
-import {
-  fromCyrilicToLatin,
-  hasLength,
-  randomWord,
-  splitString,
-  R,
-  uuid,
-} from '../helpers'
+import { fromCyrilicToLatin, hasLength, R, splitString, uuid } from '../helpers'
 import Layout from '../components/layout'
 import {
   letsGo,
   makeLyrics,
   makeSuggestion,
   nextLetter,
+  resetLast,
   resetLyrics,
   toLast,
 } from '../state/actions'
@@ -55,7 +49,15 @@ const IndexPage = connect(
     suggestions,
     word,
   }),
-  { letsGo, makeLyrics, makeSuggestion, nextLetter, resetLyrics, toLast }
+  {
+    letsGo,
+    makeLyrics,
+    makeSuggestion,
+    nextLetter,
+    resetLast,
+    resetLyrics,
+    toLast,
+  }
 )(
   ({
     current,
@@ -68,6 +70,7 @@ const IndexPage = connect(
     makeLyrics,
     makeSuggestion,
     nextLetter,
+    resetLast,
     resetLyrics,
     suggestions,
     toLast,
@@ -227,18 +230,49 @@ const IndexPage = connect(
                   ${tw('font-accio text-heading2 uppercase')};
                 `}
               >
-                {randomWord(R.drop(1, lyrics)[current])}
+                {R.drop(1, lyrics)[current].word}
               </p>
             </Container>
           )}
         {last && (
           <Container>
-            {splitString(word).map((char, i) => (
-              <p key={uuid()}>
-                <span key={uuid()}>{char}</span> is for{' '}
-                <span key={uuid()}>{randomWord(R.drop(1, lyrics)[i])}</span>
-              </p>
-            ))}
+            <div
+              className={css`
+                ${tw(['flex flex-col items-start'])};
+              `}
+            >
+              {splitString(word).map((char, i) => (
+                <p key={uuid()}>
+                  <span
+                    className={css`
+                      ${tw('font-accio text-heading5 uppercase')};
+                    `}
+                    key={uuid()}
+                  >
+                    {char}
+                  </span>{' '}
+                  is for{' '}
+                  <span
+                    className={css`
+                      ${tw('font-accio text-heading6 uppercase')};
+                    `}
+                    key={uuid()}
+                  >
+                    {R.drop(1, lyrics)[i].word}
+                  </span>
+                </p>
+              ))}
+            </div>
+            <button
+              className={css`
+                ${tw(
+                  'bg-transparent hover:bg-pink block border border-pink border-solid cursor-pointer font-accio mt-8 outline-none px-4 py-2 rounded-lg text-center text-pink hover:text-white text-xl uppercase'
+                )};
+              `}
+              onClick={resetLast}
+            >
+              back
+            </button>
           </Container>
         )}
       </Layout>

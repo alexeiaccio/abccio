@@ -46,7 +46,7 @@ const {
 )
 
 export const letsGo = payload => dispatch => {
-  dispatch(go([payload]))
+  dispatch(go(payload))
 }
 
 export const makeError = dispatch => err => {
@@ -74,6 +74,13 @@ export const makeSuggestion = payload => dispatch => {
 
 export const nextLetter = () => dispatch => {
   dispatch(current())
+}
+
+export const resetLast = () => dispatch => {
+  dispatch(go(false))
+  dispatch(last(false))
+  dispatch(suggestion(mockSuggestion))
+  dispatch(word(''))
 }
 
 export const resetLyrics = () => dispatch => {
