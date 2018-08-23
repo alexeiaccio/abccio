@@ -63,6 +63,7 @@ export const safeLyrics = word => char =>
           ? Future.of(res)
           : getSpelledLike(word)(char).map(x => x.concat(res))
     )
+    .chain(Future.of)
 
 const getSuggestion = input =>
   request(`${API}sug?s=${input}&max=5`)

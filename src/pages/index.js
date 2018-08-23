@@ -1,7 +1,7 @@
 /* global tw */
 import React from 'react'
 import { connect } from 'react-redux'
-import styled, { css } from 'react-emotion'
+import styled, { css, keyframes } from 'react-emotion'
 
 import {
   fromCyrilicToLatin,
@@ -26,6 +26,15 @@ const Heading = styled('h1')`
     content: 'beta';
     right: calc(1% - 3.5rem);
     top: calc(20% - 0.5rem);
+  }
+`
+
+const loading = keyframes`
+  from, to {
+    color: #ffed4a;
+  }
+  50% {
+    color: #e3342f;
   }
 `
 
@@ -126,14 +135,20 @@ const IndexPage = connect(
           <Container>
             <div
               className={css`
-                ${tw(
-                  'cursor-pointer font-accio text-heading1 text-white hover:text-pink tracking-wide uppercase'
-                )};
+                ${tw('font-accio text-heading1 tracking-wide uppercase')};
+                ${R.length(lyrics) - 1 === R.length(word) &&
+                  tw('cursor-pointer')};
+                animation: ${R.length(lyrics) - 1 !== R.length(word) && loading}
+                  2s linear infinite;
+                &:hover * {
+                  ${R.length(lyrics) - 1 === R.length(word) && tw('text-pink')};
+                }
               `}
             >
               {splitString(word).map((char, i) => (
                 <span
                   className={css`
+                    ${R.length(lyrics) - 1 > i && tw('text-white')};
                     opacity: ${R.length(lyrics) - 1 > i ? 1 : 0.5};
                   `}
                   key={uuid()}
@@ -143,27 +158,27 @@ const IndexPage = connect(
               ))}
             </div>
             {R.length(lyrics) - 1 === R.length(word) && (
-              <>
-                <button
-                  className={css`
-                    ${tw(
-                      'bg-white hover:bg-pink block border border-pink border-solid cursor-pointer font-accio mt-8 outline-none px-4 py-2 rounded-lg text-center text-pink hover:text-white text-xl uppercase'
-                    )};
-                  `}
-                >
-                  go...
-                </button>
-                <button
-                  className={css`
-                    ${tw(
-                      'bg-transparent hover:bg-pink block border border-pink border-solid cursor-pointer font-accio mt-8 outline-none px-4 py-2 rounded-lg text-center text-pink hover:text-white text-xl uppercase'
-                    )};
-                  `}
-                  onClick={resetLyrics}
-                >
-                  back
-                </button>
-              </>
+              <button
+                className={css`
+                  ${tw(
+                    'bg-white hover:bg-pink block border border-pink border-solid cursor-pointer font-accio mt-8 outline-none px-4 py-2 rounded-lg text-center text-pink hover:text-white text-xl uppercase'
+                  )};
+                `}
+              >
+                go...
+              </button>
+            )}
+            {hasLength(word) && (
+              <button
+                className={css`
+                  ${tw(
+                    'bg-transparent hover:bg-pink block border border-pink border-solid cursor-pointer font-accio mt-8 outline-none px-4 py-2 rounded-lg text-center text-pink hover:text-white text-xl uppercase'
+                  )};
+                `}
+                onClick={resetLyrics}
+              >
+                back
+              </button>
             )}
           </Container>
         )}
