@@ -25,13 +25,18 @@ const factoryMapping = payload => dispatch => fn =>
     )
   )
 
-const { errorMessage, formValue, lyrics, suggestion, word } = createActions(
+const { errorMessage, formValue, go, lyrics, suggestion, word } = createActions(
   'ERROR_MESSAGE',
   'FORM_VALUE',
+  'GO',
   'LYRICS',
   'SUGGESTION',
   'WORD'
 )
+
+export const letsGo = payload => dispatch => {
+  dispatch(go([payload]))
+}
 
 export const makeError = dispatch => err => {
   dispatch(errorMessage(err.message))
