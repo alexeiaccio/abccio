@@ -77,6 +77,8 @@ export const nextLetter = () => dispatch => {
 }
 
 export const resetLast = () => dispatch => {
+  dispatch(current(0))
+  dispatch(formValue(''))
   dispatch(go(false))
   dispatch(last(false))
   dispatch(suggestion(mockSuggestion))
@@ -84,8 +86,10 @@ export const resetLast = () => dispatch => {
 }
 
 export const resetLyrics = () => dispatch => {
-  dispatch(word(''))
+  dispatch(formValue(''))
+  dispatch(lyrics(null))
   dispatch(suggestion(mockSuggestion))
+  dispatch(word(''))
 }
 
 export const toLast = payload => dispatch => {

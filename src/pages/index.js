@@ -3,7 +3,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled, { css, keyframes } from 'react-emotion'
 
-import { fromCyrilicToLatin, hasLength, R, splitString, uuid } from '../helpers'
+import {
+  fromCyrilicToLatin,
+  hasLength,
+  R,
+  splitString,
+  trimSpace,
+  uuid,
+} from '../helpers'
 import Layout from '../components/layout'
 import {
   letsGo,
@@ -156,13 +163,13 @@ const IndexPage = connect(
               <div
                 className={css`
                   ${tw('font-accio text-heading1 tracking-wide uppercase')};
-                  ${R.length(lyrics) - 1 === R.length(word) &&
+                  ${R.length(lyrics) - 1 === R.length(trimSpace(word)) &&
                     tw('cursor-pointer')};
-                  animation: ${R.length(lyrics) - 1 !== R.length(word) &&
-                      loading}
+                  animation: ${R.length(lyrics) - 1 !==
+                      R.length(trimSpace(word)) && loading}
                     2s linear infinite;
                   &:hover * {
-                    ${R.length(lyrics) - 1 === R.length(word) &&
+                    ${R.length(lyrics) - 1 === R.length(trimSpace(word)) &&
                       tw('text-pink')};
                   }
                 `}
@@ -171,8 +178,16 @@ const IndexPage = connect(
                 {splitString(word).map((char, i) => (
                   <span
                     className={css`
-                      ${R.length(lyrics) - 1 > i && tw('text-white')};
-                      opacity: ${R.length(lyrics) - 1 > i ? 1 : 0.5};
+                      ${R.length(lyrics) -
+                        (R.length(word) - R.length(lyrics) - 1) -
+                        1 >
+                        i && tw('text-white')};
+                      opacity: ${R.length(lyrics) -
+                        (R.length(word) - R.length(lyrics) - 1) -
+                        1 >
+                      i
+                        ? 1
+                        : 0.5};
                     `}
                     key={uuid()}
                   >
@@ -180,7 +195,7 @@ const IndexPage = connect(
                   </span>
                 ))}
               </div>
-              {R.length(lyrics) - 1 === R.length(word) && (
+              {R.length(lyrics) - 1 === R.length(trimSpace(word)) && (
                 <button
                   className={css`
                     ${tw(
@@ -219,10 +234,12 @@ const IndexPage = connect(
                   )};
                 `}
                 onClick={() =>
-                  current < R.length(word) - 1 ? nextLetter() : toLast(true)
+                  current < R.length(trimSpace(word)) - 1
+                    ? nextLetter()
+                    : toLast(true)
                 }
               >
-                {splitString(word)[current]}
+                {splitString(trimSpace(word))[current]}
               </h2>
               <p>is for</p>
               <p
@@ -241,11 +258,11 @@ const IndexPage = connect(
                 ${tw(['flex flex-col items-start'])};
               `}
             >
-              {splitString(word).map((char, i) => (
+              {splitString(trimSpace(word)).map((char, i) => (
                 <p key={uuid()}>
                   <span
                     className={css`
-                      ${tw('font-accio text-heading5 uppercase')};
+                      ${tw('font-accio text-heading4 uppercase')};
                     `}
                     key={uuid()}
                   >
@@ -254,7 +271,7 @@ const IndexPage = connect(
                   is for{' '}
                   <span
                     className={css`
-                      ${tw('font-accio text-heading6 uppercase')};
+                      ${tw('font-accio text-heading5 uppercase')};
                     `}
                     key={uuid()}
                   >

@@ -7,6 +7,7 @@ import {
   R,
   randomNum,
   S,
+  trimSpace,
 } from '../helpers'
 
 const initialState = {
@@ -22,12 +23,14 @@ const initialState = {
 
 export const reducers = handleActions(
   {
-    CURRENT: state =>
+    CURRENT: (state, action) =>
       assoc(
         'current',
-        state.current < R.length(state.word) - 1
-          ? state.current + 1
-          : state.current,
+        action.payload !== undefined
+          ? action.payload
+          : state.current < R.length(trimSpace(state.word)) - 1
+            ? state.current + 1
+            : state.current,
         state
       ),
     ERROR_MESSAGE: (state, action) => assoc('error', action.payload, state),
