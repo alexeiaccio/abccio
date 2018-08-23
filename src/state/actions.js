@@ -24,8 +24,9 @@ const factoryMapping = payload => dispatch => fn =>
     )
   )
 
-const { errorMessage, lyrics, suggestion, word } = createActions(
+const { errorMessage, formValue, lyrics, suggestion, word } = createActions(
   'ERROR_MESSAGE',
+  'FORM_VALUE',
   'LYRICS',
   'SUGGESTION',
   'WORD'
@@ -48,6 +49,7 @@ export const makeLyrics = payload => dispatch => {
 }
 
 export const makeSuggestion = payload => dispatch => {
+  dispatch(formValue(payload))
   safeSuggestion(payload).fork(makeError(dispatch), res =>
     dispatch(suggestion(res))
   )

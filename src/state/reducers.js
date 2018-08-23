@@ -3,6 +3,7 @@ import { assoc, concat, mergeWith, mockSuggestion } from '../helpers'
 
 const initialState = {
   error: '',
+  formValue: '',
   lyrics: [],
   suggestions: mockSuggestion,
   word: '',
@@ -11,6 +12,7 @@ const initialState = {
 export const reducers = handleActions(
   {
     ERROR_MESSAGE: (state, action) => assoc('error', action.payload, state),
+    FORM_VALUE: (state, action) => assoc('formValue', action.payload, state),
     LYRICS: (state, action) =>
       action.payload === null
         ? assoc('lyrics', [], state)

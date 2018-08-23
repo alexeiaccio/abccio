@@ -30,9 +30,14 @@ const Heading = styled('h1')`
 `
 
 const IndexPage = connect(
-  ({ error, lyrics, suggestions }) => ({ error, lyrics, suggestions }),
+  ({ error, formValue, lyrics, suggestions }) => ({
+    error,
+    formValue,
+    lyrics,
+    suggestions,
+  }),
   { makeLyrics, makeSuggestion }
-)(({ error, lyrics, makeLyrics, makeSuggestion, suggestions }) => {
+)(({ error, formValue, lyrics, makeLyrics, makeSuggestion, suggestions }) => {
   return (
     <Layout>
       <Container>
@@ -60,7 +65,10 @@ const IndexPage = connect(
           className={css`
             ${tw('flex w-full')};
           `}
-          onSubmit={e => e.preventDefault()}
+          onSubmit={e => {
+            makeLyrics(fromCyrilicToLatin(formValue))
+            e.preventDefault()
+          }}
         >
           <input
             className={css`
