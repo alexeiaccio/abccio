@@ -222,7 +222,15 @@ const IndexPage = connect(
             </Container>
           )}
 
-        {hasLength(error) && <p>{error}</p>}
+        {hasLength(error) && (
+          <p
+            className={css`
+              ${tw('fixed pin-b pin-l pin-r text-center')};
+            `}
+          >
+            {error}
+          </p>
+        )}
         {hasLength(lyrics) &&
           go &&
           !last && (

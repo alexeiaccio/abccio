@@ -12,6 +12,7 @@
     "fluture": "^9.0.1",
     "fluture-sanctuary-types": "^2.2.1",
     "gatsby": "next",
+    "gatsby-cli": "^2.0.0-rc.0",
     "gatsby-plugin-google-fonts": "^0.0.4",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-offline": "next",
@@ -54,7 +55,7 @@
     "prettier": "^1.13.7"
   },
   "engines": {
-    "node": "^8.11.4"    
+    "node": "^8.11.4"
   },
   "repository": {
     "type": "git",
