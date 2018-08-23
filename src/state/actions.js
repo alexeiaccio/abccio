@@ -3,6 +3,7 @@ import { safeLyrics, safeSuggestion } from '../api'
 import {
   chain,
   Future,
+  mockSuggestion,
   pipe,
   randomWord,
   stringHead,
@@ -53,4 +54,9 @@ export const makeSuggestion = payload => dispatch => {
   safeSuggestion(payload).fork(makeError(dispatch), res =>
     dispatch(suggestion(res))
   )
+}
+
+export const resetLyrics = () => dispatch => {
+  dispatch(word(''))
+  dispatch(suggestion(mockSuggestion))
 }
