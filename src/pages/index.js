@@ -1,8 +1,8 @@
+/* global tw */
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
+import { css } from 'react-emotion'
 
-import { makeLyrics, makeSuggestion } from '../state/actions'
-import Layout from '../components/layout'
 import {
   fromCyrilicToLatin,
   hasLength,
@@ -11,6 +11,8 @@ import {
   R,
   uuid,
 } from '../helpers'
+import Layout from '../components/layout'
+import { makeLyrics, makeSuggestion } from '../state/actions'
 
 const IndexPage = connect(
   ({ error, lyrics, suggestions }) => ({ error, lyrics, suggestions }),
@@ -18,7 +20,13 @@ const IndexPage = connect(
 )(({ error, lyrics, makeLyrics, makeSuggestion, suggestions }) => {
   return (
     <Layout>
-      <h1>Hi people</h1>
+      <h1
+        className={css`
+          ${tw('font-accio')};
+        `}
+      >
+        Hi people
+      </h1>
       <input
         type="text"
         placeholder="Print here..."

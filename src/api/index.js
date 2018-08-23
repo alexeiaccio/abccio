@@ -15,11 +15,11 @@ const getFabric = type => word => char =>
     .map(res => res.body)
     .chain(encase(JSON.parse))
 
-//const getFollowers = getFabric('rel_bga')
+const getFollowers = getFabric('rel_bga')
 
 const getTriggers = getFabric('rel_trg')
 
-//const getHomophone = getFabric('rel_hom')
+const getHomophone = getFabric('rel_hom')
 
 const getRhymes = getFabric('rel_rhy')
 
@@ -38,6 +38,18 @@ export const safeLyrics = word => char =>
         gtTen(res)
           ? Future.of(res)
           : getRhymes(word)(char).map(x => x.concat(res))
+    )
+    .chain(
+      res =>
+        gtTen(res)
+          ? Future.of(res)
+          : getFollowers(word)(char).map(x => x.concat(res))
+    )
+    .chain(
+      res =>
+        gtTen(res)
+          ? Future.of(res)
+          : getHomophone(word)(char).map(x => x.concat(res))
     )
     .chain(
       res =>

@@ -3020,12 +3020,12 @@ table {
   font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
 
-.font-source {
-  font-family: Source Sans Pro, sans-serif;
+.font-montserrat {
+  font-family: Montserrat Alternates, sans-serif;
 }
 
-.font-plex {
-  font-family: IBM Plex Sans, sans-serif;
+.font-accio {
+  font-family: Accio, sans-serif;
 }
 
 .font-hairline {
@@ -9770,12 +9770,12 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .sm\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .sm\:font-montserrat {
+    font-family: Montserrat Alternates, sans-serif;
   }
 
-  .sm\:font-plex {
-    font-family: IBM Plex Sans, sans-serif;
+  .sm\:font-accio {
+    font-family: Accio, sans-serif;
   }
 
   .sm\:font-hairline {
@@ -16501,12 +16501,12 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .md\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .md\:font-montserrat {
+    font-family: Montserrat Alternates, sans-serif;
   }
 
-  .md\:font-plex {
-    font-family: IBM Plex Sans, sans-serif;
+  .md\:font-accio {
+    font-family: Accio, sans-serif;
   }
 
   .md\:font-hairline {
@@ -23232,12 +23232,12 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .lg\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .lg\:font-montserrat {
+    font-family: Montserrat Alternates, sans-serif;
   }
 
-  .lg\:font-plex {
-    font-family: IBM Plex Sans, sans-serif;
+  .lg\:font-accio {
+    font-family: Accio, sans-serif;
   }
 
   .lg\:font-hairline {
@@ -29963,12 +29963,12 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .xl\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .xl\:font-montserrat {
+    font-family: Montserrat Alternates, sans-serif;
   }
 
-  .xl\:font-plex {
-    font-family: IBM Plex Sans, sans-serif;
+  .xl\:font-accio {
+    font-family: Accio, sans-serif;
   }
 
   .xl\:font-hairline {
@@ -36694,12 +36694,12 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .screen\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .screen\:font-montserrat {
+    font-family: Montserrat Alternates, sans-serif;
   }
 
-  .screen\:font-plex {
-    font-family: IBM Plex Sans, sans-serif;
+  .screen\:font-accio {
+    font-family: Accio, sans-serif;
   }
 
   .screen\:font-hairline {
@@ -43425,12 +43425,12 @@ table {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
-  .desktop\:font-source {
-    font-family: Source Sans Pro, sans-serif;
+  .desktop\:font-montserrat {
+    font-family: Montserrat Alternates, sans-serif;
   }
 
-  .desktop\:font-plex {
-    font-family: IBM Plex Sans, sans-serif;
+  .desktop\:font-accio {
+    font-family: Accio, sans-serif;
   }
 
   .desktop\:font-hairline {

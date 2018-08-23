@@ -228,8 +228,8 @@ module.exports = {
       'monospace',
     ],
     // Custom
-    source: ['Source Sans Pro', 'sans-serif'],
-    plex: ['IBM Plex Sans', 'sans-serif'],
+    montserrat: ['Montserrat Alternates', 'sans-serif'],
+    accio: ['Accio', 'sans-serif'],
   },
 
   /*

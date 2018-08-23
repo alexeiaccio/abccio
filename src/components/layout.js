@@ -9,8 +9,18 @@ import { injectGlobal } from 'emotion'
 import { Background } from './background'
 
 injectGlobal`
+  @font-face {
+    font-family: 'Accio';
+    src: url('./fonts/AccioBeta-Regular.eot?#iefix') format('embedded-opentype'),  
+      url('./fonts/AccioBeta-Regular.woff') format('woff'), 
+      url('./fonts/AccioBeta-Regular.ttf')  format('truetype'), 
+      url('./fonts/AccioBeta-Regular.svg#AccioBeta-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   body {
-    ${tw(['fixed', 'overflow-hidden', 'pin', 'm-0'])};
+    ${tw(['m-0', 'font-montserrat'])};
   }
 `
 
