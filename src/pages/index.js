@@ -91,7 +91,7 @@ const IndexPage = connect(
               <Heading>
                 <span
                   className={css`
-                    ${tw('font-accio text-heading0 text-white ')};
+                    ${tw('font-accio text-heading0 text-white')};
                   `}
                 >
                   abc
