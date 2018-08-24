@@ -1,13 +1,22 @@
 {
   "nodes": {
     "SitePage /dev-404-page/": {
+      "jsonName": "dev-404-page-5f9",
+      "internalComponentName": "ComponentDev404Page",
       "path": "/dev-404-page/",
+      "component": "C:/Users/alexe/Documents/abccio/.cache/dev-404-page.js",
+      "componentChunkName": "component---cache-dev-404-page-js",
+      "context": {},
+      "pluginCreator___NODE": "Plugin dev-404-page",
+      "pluginCreatorId": "Plugin dev-404-page",
+      "componentPath": "C:/Users/alexe/Documents/abccio/.cache/dev-404-page.js",
       "id": "SitePage /dev-404-page/",
       "parent": "SOURCE",
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "f91d29e10ba680b413138cf9ed86e655",
+        "contentDigest": "c6af291b99085bd912e64cd705da7855",
+        "description": "Plugin dev-404-page",
         "owner": "internal-data-bridge"
       }
     },
@@ -595,6 +604,10 @@
             "version": "^5.0.7"
           },
           {
+            "name": "react-transition-group",
+            "version": "^2.4.0"
+          },
+          {
             "name": "recompose",
             "version": "^0.28.2"
           },
@@ -757,35 +770,17 @@
       "siteMetadata": {
         "title": "ABC Poetry"
       },
+      "port": "8000",
+      "host": "localhost",
       "pathPrefix": "",
       "polyfill": true,
-      "buildTime": "2018-08-24T07:06:21.960Z",
+      "buildTime": "2018-08-24T11:08:31.477Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "5bd676036dc7232b9b41a052d3d4ed69",
+        "contentDigest": "5611edf8d8ddb8ff65f407d4a23c4158",
         "type": "Site",
-        "owner": "internal-data-bridge"
-      }
-    },
-    "SitePage /offline-plugin-app-shell-fallback/": {
-      "jsonName": "offline-plugin-app-shell-fallback-a30",
-      "internalComponentName": "ComponentOfflinePluginAppShellFallback",
-      "path": "/offline-plugin-app-shell-fallback/",
-      "component": "C:/Users/alexe/Documents/abccio/node_modules/gatsby-plugin-offline/app-shell.js",
-      "componentChunkName": "component---node-modules-gatsby-plugin-offline-app-shell-js",
-      "context": {},
-      "pluginCreator___NODE": "Plugin gatsby-plugin-offline",
-      "pluginCreatorId": "Plugin gatsby-plugin-offline",
-      "componentPath": "C:/Users/alexe/Documents/abccio/node_modules/gatsby-plugin-offline/app-shell.js",
-      "id": "SitePage /offline-plugin-app-shell-fallback/",
-      "parent": "SOURCE",
-      "children": [],
-      "internal": {
-        "type": "SitePage",
-        "contentDigest": "71465a8428b2358fd2663f673bb44b29",
-        "description": "Plugin gatsby-plugin-offline",
         "owner": "internal-data-bridge"
       }
     },
@@ -852,7 +847,7 @@
   },
   "status": {
     "plugins": {},
-    "PLUGINS_HASH": "ec5ecff7cd867564b967d5be4b043dfa"
+    "PLUGINS_HASH": "d8fb6ad56bae0355fde8c3c02ef59b53"
   },
   "componentDataDependencies": {
     "nodes": {
@@ -864,13 +859,16 @@
   },
   "jsonDataPaths": {
     "sq--src-components-layout-js": 755544856,
-    "dev-404-page-5f9": "920/path---dev-404-page-5-f-9-fab-NZuapzHg3X9TaN1iIixfv1W23E",
-    "index": "173/path---index-6a9-NZuapzHg3X9TaN1iIixfv1W23E",
     "404-22d": "44/path---404-22-d-bce-NZuapzHg3X9TaN1iIixfv1W23E",
-    "404-html-516": "164/path---404-html-516-62a-NZuapzHg3X9TaN1iIixfv1W23E",
-    "offline-plugin-app-shell-fallback-a30": "520/path---offline-plugin-app-shell-fallback-a-30-c5a-NZuapzHg3X9TaN1iIixfv1W23E"
+    "index": "173/path---index-6a9-NZuapzHg3X9TaN1iIixfv1W23E",
+    "dev-404-page-5f9": "920/path---dev-404-page-5-f-9-fab-NZuapzHg3X9TaN1iIixfv1W23E",
+    "404-html-516": "164/path---404-html-516-62a-NZuapzHg3X9TaN1iIixfv1W23E"
   },
   "components": {
+    "C:/Users/alexe/Documents/abccio/.cache/dev-404-page.js": {
+      "query": "",
+      "componentPath": "C:/Users/alexe/Documents/abccio/.cache/dev-404-page.js"
+    },
     "C:/Users/alexe/Documents/abccio/src/pages/404.js": {
       "query": "",
       "componentPath": "C:/Users/alexe/Documents/abccio/src/pages/404.js"
@@ -878,10 +876,6 @@
     "C:/Users/alexe/Documents/abccio/src/pages/index.js": {
       "query": "",
       "componentPath": "C:/Users/alexe/Documents/abccio/src/pages/index.js"
-    },
-    "C:/Users/alexe/Documents/abccio/node_modules/gatsby-plugin-offline/app-shell.js": {
-      "query": "",
-      "componentPath": "C:/Users/alexe/Documents/abccio/node_modules/gatsby-plugin-offline/app-shell.js"
     }
   },
   "staticQueryComponents": {

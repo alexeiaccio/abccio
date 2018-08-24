@@ -17,13 +17,16 @@ const S = create({
 export const {
   assoc,
   concat,
+  curry,
   empty,
   F,
   identity,
   length,
   mergeWith,
   pair,
+  pick,
   replace,
+  subtract,
 } = R
 
 export const {
@@ -87,3 +90,13 @@ export const splitString = splitOn('')
 export const trimSpace = replace(/\s|-/, empty)
 
 export const trimString = pipe([words, head, fromMaybe(''), trimSpace])
+
+export const flipSubtract = flip(subtract)
+
+export const lengthMinusOne = compose(flipSubtract(1))(length)
+
+export const trimmedLength = compose(length)(trimSpace)
+
+export const lengthDiff = curry((x, y) =>
+  subtract(length(x), lengthMinusOne(y))
+)

@@ -28,24 +28,29 @@ const factoryMapping = payload => dispatch => fn =>
 const {
   current,
   errorMessage,
+  first,
   formValue,
   go,
   last,
   lyrics,
+  second,
   suggestion,
   word,
 } = createActions(
   'CURRENT',
   'ERROR_MESSAGE',
+  'FIRST',
   'FORM_VALUE',
   'GO',
   'LAST',
   'LYRICS',
+  'SECOND',
   'SUGGESTION',
   'WORD'
 )
 
 export const letsGo = payload => dispatch => {
+  dispatch(second(false))
   dispatch(go(payload))
 }
 
@@ -58,8 +63,10 @@ export const makeError = dispatch => err => {
 }
 
 export const makeLyrics = payload => dispatch => {
-  dispatch(word(payload))
+  dispatch(first(false))
+  dispatch(second(true))
   dispatch(lyrics(null))
+  dispatch(word(payload))
   factoryMapping(payload)(dispatch)(lyricsFactory)(
     lyricsFactory(payload)(stringHead(payload))(dispatch)
   ).fork(makeError(dispatch), console.log)
@@ -78,6 +85,7 @@ export const nextLetter = () => dispatch => {
 
 export const resetLast = () => dispatch => {
   dispatch(current(0))
+  dispatch(first(true))
   dispatch(formValue(''))
   dispatch(go(false))
   dispatch(last(false))
@@ -86,10 +94,14 @@ export const resetLast = () => dispatch => {
 }
 
 export const resetLyrics = () => dispatch => {
+  dispatch(first(true))
   dispatch(formValue(''))
-  dispatch(lyrics(null))
+  dispatch(second(false))
   dispatch(suggestion(mockSuggestion))
-  dispatch(word(''))
+  Future.after(600, '').value(x => {
+    dispatch(lyrics(null))
+    dispatch(word(x))
+  })
 }
 
 export const toLast = payload => dispatch => {

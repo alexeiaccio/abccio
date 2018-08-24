@@ -1,7 +1,8 @@
 /* global tw */
 import React from 'react'
-import styled, { keyframes } from 'react-emotion'
+import styled, { css, keyframes } from 'react-emotion'
 import { withInterval } from 'kefir'
+import Transition from 'react-transition-group/Transition'
 
 import { assoc, length, mapPropsStream, pair, uuid } from '../helpers'
 
@@ -34,9 +35,14 @@ const animation = {
 }
 
 const StyledBackground = styled('div')`
-  ${tw(['fixed', 'pin', 'bg-indigo-darkest'])};
+  ${tw(['h-full', 'w-full'])};
   animation: ${({ i }) => animation[i]} 12000ms linear;
 `
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered: { opacity: 1 },
+}
 
 const enhance = mapPropsStream(props$ => {
   let i = 0
@@ -53,20 +59,29 @@ const enhance = mapPropsStream(props$ => {
   )
 })
 
-export const Background = enhance(({ colors }) => {
-  return (
-    <>
-      {colors.map((color, i) => (
-        <StyledBackground
-          {...{ i }}
-          key={uuid()}
-          style={{
-            background: `linear-gradient(45deg, ${color[0]} 0%, ${
-              color[1]
-            } 100%)`,
-          }}
-        />
-      ))}
-    </>
-  )
-})
+export const Background = enhance(({ colors }) => (
+  <Transition appear in mountOnEnter timeout={800}>
+    {state => (
+      <div
+        className={css`
+          ${tw(['fixed', 'pin'])};
+          opacity: 0;
+          transition: opacity, ${800}ms ease-in-out;
+        `}
+        style={{ ...transitionStyles[state] }}
+      >
+        {colors.map((color, i) => (
+          <StyledBackground
+            {...{ i }}
+            key={uuid()}
+            style={{
+              background: `linear-gradient(45deg, ${color[0]} 0%, ${
+                color[1]
+              } 100%)`,
+            }}
+          />
+        ))}
+      </div>
+    )}
+  </Transition>
+))
