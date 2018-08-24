@@ -59,7 +59,3 @@ typings/
 
 # next.js build output
 .next
-
-# gatsby
-.cache
-public/
