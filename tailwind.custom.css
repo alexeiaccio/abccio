@@ -4344,6 +4344,10 @@ table {
   min-width: 100%;
 }
 
+.min-w-screen {
+  min-width: 100vw;
+}
+
 .-m-0 {
   margin: 0;
 }
@@ -11094,6 +11098,10 @@ table {
     min-width: 100%;
   }
 
+  .sm\:min-w-screen {
+    min-width: 100vw;
+  }
+
   .sm\:-m-0 {
     margin: 0;
   }
@@ -17823,6 +17831,10 @@ table {
 
   .md\:min-w-full {
     min-width: 100%;
+  }
+
+  .md\:min-w-screen {
+    min-width: 100vw;
   }
 
   .md\:-m-0 {
@@ -24556,6 +24568,10 @@ table {
     min-width: 100%;
   }
 
+  .lg\:min-w-screen {
+    min-width: 100vw;
+  }
+
   .lg\:-m-0 {
     margin: 0;
   }
@@ -31285,6 +31301,10 @@ table {
 
   .xl\:min-w-full {
     min-width: 100%;
+  }
+
+  .xl\:min-w-screen {
+    min-width: 100vw;
   }
 
   .xl\:-m-0 {
@@ -38018,6 +38038,10 @@ table {
     min-width: 100%;
   }
 
+  .screen\:min-w-screen {
+    min-width: 100vw;
+  }
+
   .screen\:-m-0 {
     margin: 0;
   }
@@ -44747,6 +44771,10 @@ table {
 
   .desktop\:min-w-full {
     min-width: 100%;
+  }
+
+  .desktop\:min-w-screen {
+    min-width: 100vw;
   }
 
   .desktop\:-m-0 {

@@ -33,7 +33,13 @@ export const Word = connect(
   <>
     <div
       className={css`
-        ${tw(['font-accio', 'text-heading1', 'tracking-wide', 'uppercase'])};
+        ${tw([
+          'font-accio',
+          'text-center',
+          'text-heading1',
+          'tracking-wide',
+          'uppercase',
+        ])};
         ${lengthMinusOne(lyrics) === trimmedLength(word) &&
           tw('cursor-pointer')};
         animation: ${lengthMinusOne(lyrics) !== trimmedLength(word) && loading}
@@ -49,7 +55,7 @@ export const Word = connect(
           <span
             className={css`
               ${subtract(lengthMinusOne(lyrics), lengthDiff(word, lyrics)) >
-                i && tw('text-white')};
+                i && tw(['text-white'])};
               opacity: ${subtract(
                 lengthMinusOne(lyrics),
                 lengthDiff(word, lyrics)

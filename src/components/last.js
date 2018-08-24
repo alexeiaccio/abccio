@@ -16,59 +16,69 @@ export const Last = connect(
 )(({ last, lyrics, replay, resetLast, word }) => (
   <ScreenTransitions inProp={last}>
     <AbsoluteContainer>
-      <Container>
-        <div
+      <div
+        className={css`
+          ${tw(['max-h-screen', 'overflow-x-hidden', 'min-w-screen'])};
+        `}
+      >
+        <Container
           className={css`
-            ${tw(['flex', 'flex-col', 'items-start', 'whitespace-no-wrap'])};
+            ${tw(['py-8'])};
           `}
         >
-          {splitString(trimSpace(word)).map((char, i) => (
-            <p key={uuid()}>
-              <span
-                className={css`
-                  ${tw([
-                    'font-accio',
-                    'text-heading4',
-                    'text-white',
-                    'uppercase',
-                  ])};
-                `}
-                key={uuid()}
-              >
-                {char}
-              </span>
-              <span
-                className={css`
-                  ${tw(['text-indigo-darkest'])};
-                `}
-              >
-                {' '}
-                is for{' '}
-              </span>
-              <span
-                className={css`
-                  ${tw([
-                    'font-accio',
-                    'text-heading5',
-                    'text-white',
-                    'uppercase',
-                  ])};
-                `}
-                key={uuid()}
-                title={getLyricsWord(lyrics, i)}
-              >
-                {getLyricsWord(lyrics, i)}
-              </span>
-            </p>
-          ))}
-        </div>
-        <Appearing>
-          <ButtonFilled onClick={() => replay(true)}>replay</ButtonFilled>
-        </Appearing>
-        <Appearing>
-          <ButtonOutline onClick={resetLast}>back</ButtonOutline>
-        </Appearing>
-      </Container>
+          <div
+            className={css`
+              ${tw(['flex', 'flex-col', 'items-start', 'whitespace-no-wrap'])};
+            `}
+          >
+            {splitString(trimSpace(word)).map((char, i) => (
+              <p key={uuid()}>
+                <span
+                  className={css`
+                    ${tw([
+                      'font-accio',
+                      'text-heading4',
+                      'text-white',
+                      'uppercase',
+                    ])};
+                  `}
+                  key={uuid()}
+                >
+                  {char}
+                </span>
+                <span
+                  className={css`
+                    ${tw(['text-indigo-darkest'])};
+                  `}
+                >
+                  {' '}
+                  is for{' '}
+                </span>
+                <span
+                  className={css`
+                    ${tw([
+                      'font-accio',
+                      'text-heading5',
+                      'text-white',
+                      'uppercase',
+                    ])};
+                  `}
+                  key={uuid()}
+                  title={getLyricsWord(lyrics, i)}
+                >
+                  {getLyricsWord(lyrics, i)}
+                </span>
+              </p>
+            ))}
+          </div>
+          <Appearing>
+            <ButtonFilled onClick={() => replay(true)}>replay</ButtonFilled>
+          </Appearing>
+          <Appearing>
+            <ButtonOutline onClick={resetLast}>back</ButtonOutline>
+          </Appearing>
+        </Container>
+      </div>
     </AbsoluteContainer>
   </ScreenTransitions>
 ))
