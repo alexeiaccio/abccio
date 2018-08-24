@@ -6,6 +6,8 @@ import Transition from 'react-transition-group/Transition'
 
 import { Future } from '../helpers'
 import { First } from './first'
+import { Last } from './last'
+import { Lyrics } from './lyrics'
 import { Second } from './second'
 
 const transitionStyles = {
@@ -39,6 +41,8 @@ export const App = lifecycle({
       >
         <First />
         <Second />
+        <Lyrics />
+        <Last />
       </div>
     )}
   </Transition>

@@ -18,12 +18,14 @@ export const {
   assoc,
   concat,
   curry,
+  drop,
   empty,
   F,
   identity,
   length,
   mergeWith,
   pair,
+  path,
   pick,
   replace,
   subtract,
@@ -99,4 +101,10 @@ export const trimmedLength = compose(length)(trimSpace)
 
 export const lengthDiff = curry((x, y) =>
   subtract(length(x), lengthMinusOne(y))
+)
+
+export const getLyricsWord = curry((lyrics, current) =>
+  pipe([drop(1), path([current]), get(is($.String))('word'), fromMaybe('')])(
+    lyrics
+  )
 )

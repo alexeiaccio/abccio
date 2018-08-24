@@ -63,10 +63,10 @@ export const makeError = dispatch => err => {
 }
 
 export const makeLyrics = payload => dispatch => {
-  dispatch(first(false))
   dispatch(second(true))
   dispatch(lyrics(null))
   dispatch(word(payload))
+  Future.after(200, false).value(x => dispatch(first(x)))
   factoryMapping(payload)(dispatch)(lyricsFactory)(
     lyricsFactory(payload)(stringHead(payload))(dispatch)
   ).fork(makeError(dispatch), console.log)
@@ -80,25 +80,40 @@ export const makeSuggestion = payload => dispatch => {
 }
 
 export const nextLetter = () => dispatch => {
-  dispatch(current())
+  dispatch(go(false))
+  Future.after(200, true).value(x => {
+    dispatch(current())
+    dispatch(go(x))
+  })
+}
+
+export const replay = () => dispatch => {
+  dispatch(current(0))
+  dispatch(go(true))
+  Future.after(200, false).value(x => {
+    dispatch(last(x))
+  })
 }
 
 export const resetLast = () => dispatch => {
   dispatch(current(0))
   dispatch(first(true))
   dispatch(formValue(''))
-  dispatch(go(false))
-  dispatch(last(false))
   dispatch(suggestion(mockSuggestion))
-  dispatch(word(''))
+  Future.after(200, false).value(x => {
+    dispatch(last(x))
+  })
+  Future.after(1200, false).value(x => {
+    dispatch(word(''))
+  })
 }
 
 export const resetLyrics = () => dispatch => {
   dispatch(first(true))
   dispatch(formValue(''))
-  dispatch(second(false))
   dispatch(suggestion(mockSuggestion))
-  Future.after(600, '').value(x => {
+  Future.after(200, false).value(x => dispatch(second(x)))
+  Future.after(1200, '').value(x => {
     dispatch(lyrics(null))
     dispatch(word(x))
   })
@@ -106,4 +121,5 @@ export const resetLyrics = () => dispatch => {
 
 export const toLast = payload => dispatch => {
   dispatch(last(payload))
+  Future.after(200, false).value(x => dispatch(go(x)))
 }

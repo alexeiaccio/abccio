@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import styled, { css } from 'react-emotion'
 
 import { App } from '../components/app'
+import { Error } from '../components/error'
 import Layout from '../components/layout'
-import { hasLength, R, splitString, trimSpace, uuid } from '../helpers'
+import { R, splitString, trimSpace, uuid } from '../helpers'
 import {
   makeLyrics,
   makeSuggestion,
@@ -51,45 +52,8 @@ const IndexPage = connect(
     return (
       <Layout>
         <App />
-
-        {hasLength(error) && (
-          <p
-            className={css`
-              ${tw('fixed pin-b pin-l pin-r text-center')};
-            `}
-          >
-            {error}
-          </p>
-        )}
-        {hasLength(lyrics) &&
-          go &&
-          !last && (
-            <Container>
-              <h2
-                className={css`
-                  ${tw(
-                    'font-accio cursor-pointer text-heading0 text-white hover:text-pink uppercase'
-                  )};
-                `}
-                onClick={() =>
-                  current < R.length(trimSpace(word)) - 1
-                    ? nextLetter()
-                    : toLast(true)
-                }
-              >
-                {splitString(trimSpace(word))[current]}
-              </h2>
-              <p>is for</p>
-              <p
-                className={css`
-                  ${tw('font-accio text-heading2 uppercase')};
-                `}
-              >
-                {R.drop(1, lyrics)[current].word}
-              </p>
-            </Container>
-          )}
-        {last && (
+        <Error />
+        {false && (
           <Container>
             <div
               className={css`
