@@ -19,29 +19,40 @@ export const Last = connect(
       <Container>
         <div
           className={css`
-            ${tw([
-              'flex',
-              'flex-col',
-              'items-start',
-              'text-white',
-              'whitespace-no-wrap',
-            ])};
+            ${tw(['flex', 'flex-col', 'items-start', 'whitespace-no-wrap'])};
           `}
         >
           {splitString(trimSpace(word)).map((char, i) => (
             <p key={uuid()}>
               <span
                 className={css`
-                  ${tw(['font-accio', 'text-heading4', 'uppercase'])};
+                  ${tw([
+                    'font-accio',
+                    'text-heading4',
+                    'text-white',
+                    'uppercase',
+                  ])};
                 `}
                 key={uuid()}
               >
                 {char}
               </span>
-              <span> is for </span>
               <span
                 className={css`
-                  ${tw(['font-accio', 'text-heading5', 'uppercase'])};
+                  ${tw(['text-indigo-darkest'])};
+                `}
+              >
+                {' '}
+                is for{' '}
+              </span>
+              <span
+                className={css`
+                  ${tw([
+                    'font-accio',
+                    'text-heading5',
+                    'text-white',
+                    'uppercase',
+                  ])};
                 `}
                 key={uuid()}
                 title={getLyricsWord(lyrics, i)}

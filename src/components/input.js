@@ -4,7 +4,7 @@ import { css } from 'react-emotion'
 import { connect } from 'react-redux'
 
 import { makeLyrics, makeSuggestion } from '../state/actions'
-import { fromCyrilicToLatin, pick } from '../helpers'
+import { fromCyrilicToLatin, hasLength, pick } from '../helpers'
 
 export const Input = connect(
   pick(['formValue']),
@@ -15,7 +15,7 @@ export const Input = connect(
       ${tw(['flex', 'w-full'])};
     `}
     onSubmit={e => {
-      makeLyrics(fromCyrilicToLatin(formValue))
+      hasLength(formValue) && makeLyrics(fromCyrilicToLatin(formValue))
       e.preventDefault()
     }}
   >

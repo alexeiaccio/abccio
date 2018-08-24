@@ -7,7 +7,7 @@ export const ButtonTemplate = css`
     'border',
     'border-solid',
     'border-pink',
-    'cursor-pointer',
+
     'font-accio',
     'hover:bg-pink',
     'items-center',
@@ -24,7 +24,7 @@ export const ButtonTemplate = css`
 `
 
 export const Button = css`
-  ${tw(['mt-8'])};
+  ${tw(['cursor-pointer', 'mt-8'])};
 `
 
 export const ButtonFilled = styled('button')`

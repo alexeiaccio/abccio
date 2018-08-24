@@ -774,12 +774,12 @@
       "host": "localhost",
       "pathPrefix": "",
       "polyfill": true,
-      "buildTime": "2018-08-24T13:58:00.871Z",
+      "buildTime": "2018-08-24T14:15:17.224Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "5b6f56d21e29c00e4230f818705d4972",
+        "contentDigest": "d62033a9d5fb68cc6cc1eaf21c23217c",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
