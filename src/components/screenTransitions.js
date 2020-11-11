@@ -3,12 +3,8 @@ import { css } from 'react-emotion'
 import Transition from 'react-transition-group/Transition'
 
 const transitionStyles = {
-  enter: {
-    opacity: 0,
-    transform: 'scale(0.1)',
-  },
   entering: {
-    opacity: 0,
+    opacity: 1,
     transform: 'scale(0.1)',
   },
   entered: {
@@ -26,7 +22,13 @@ const transitionStyles = {
 }
 
 export const ScreenTransitions = ({ children, inProp }) => (
-  <Transition appear in={inProp} mountOnEnter timeout={600} unmountOnExit>
+  <Transition
+    appear
+    in={inProp}
+    mountOnEnter
+    timeout={{ enter: 400, exit: 600 }}
+    unmountOnExit
+  >
     {state => (
       <div
         className={css`

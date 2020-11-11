@@ -10,7 +10,7 @@ import {
   lengthMinusOne,
   pick,
   splitString,
-  subtract,
+  add,
   trimmedLength,
   uuid,
 } from '../helpers'
@@ -31,6 +31,7 @@ export const Word = connect(
   { letsGo, resetLyrics }
 )(({ letsGo, lyrics, resetLyrics, word }) => (
   <>
+    {console.log(lengthMinusOne(lyrics), lengthDiff(lyrics, word))}
     <div
       className={css`
         ${tw([
@@ -54,12 +55,10 @@ export const Word = connect(
         {splitString(word).map((char, i) => (
           <span
             className={css`
-              ${subtract(lengthMinusOne(lyrics), lengthDiff(word, lyrics)) >
-                i && tw(['text-white'])};
-              opacity: ${subtract(
-                lengthMinusOne(lyrics),
-                lengthDiff(word, lyrics)
-              ) > i
+              ${add(lengthMinusOne(lyrics), lengthDiff(word, lyrics)) > i &&
+                tw(['text-white'])};
+              opacity: ${add(lengthMinusOne(lyrics), lengthDiff(word, lyrics)) >
+              i
                 ? 1
                 : 0.5};
             `}

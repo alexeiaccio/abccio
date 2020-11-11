@@ -15,6 +15,7 @@ const S = create({
 })
 
 export const {
+  add,
   assoc,
   concat,
   curry,

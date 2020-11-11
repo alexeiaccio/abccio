@@ -658,6 +658,10 @@
         ],
         "devDependencies": [
           {
+            "name": "rimraf",
+            "version": "^2.6.2"
+          },
+          {
             "name": "prettier",
             "version": "^1.13.7"
           }
@@ -774,12 +778,12 @@
       "host": "localhost",
       "pathPrefix": "",
       "polyfill": true,
-      "buildTime": "2018-08-24T14:42:19.171Z",
+      "buildTime": "2018-09-13T15:01:32.233Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "a96c063acf830e551588724760610e17",
+        "contentDigest": "d06b87c5dfaadbe68bc717ae6a510c59",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
@@ -847,7 +851,7 @@
   },
   "status": {
     "plugins": {},
-    "PLUGINS_HASH": "d8fb6ad56bae0355fde8c3c02ef59b53"
+    "PLUGINS_HASH": "64267324255d9231cd78126c1ddb7373"
   },
   "componentDataDependencies": {
     "nodes": {
@@ -866,6 +870,10 @@
     "offline-plugin-app-shell-fallback-a30": "520/path---offline-plugin-app-shell-fallback-a-30-c5a-NZuapzHg3X9TaN1iIixfv1W23E"
   },
   "components": {
+    "C:/Users/alexe/Documents/abccio/.cache/dev-404-page.js": {
+      "query": "",
+      "componentPath": "C:/Users/alexe/Documents/abccio/.cache/dev-404-page.js"
+    },
     "C:/Users/alexe/Documents/abccio/src/pages/404.js": {
       "query": "",
       "componentPath": "C:/Users/alexe/Documents/abccio/src/pages/404.js"
@@ -873,10 +881,6 @@
     "C:/Users/alexe/Documents/abccio/src/pages/index.js": {
       "query": "",
       "componentPath": "C:/Users/alexe/Documents/abccio/src/pages/index.js"
-    },
-    "C:/Users/alexe/Documents/abccio/.cache/dev-404-page.js": {
-      "query": "",
-      "componentPath": "C:/Users/alexe/Documents/abccio/.cache/dev-404-page.js"
     }
   },
   "staticQueryComponents": {

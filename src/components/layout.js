@@ -7,6 +7,7 @@ import { css } from 'react-emotion'
 import { injectGlobal } from 'emotion'
 
 import { Background } from './background'
+import { Footer } from './footer'
 
 injectGlobal`
   @font-face {
@@ -59,6 +60,7 @@ const Layout = ({ children, data }) => (
           >
             {children}
           </div>
+          <Footer />
         </div>
       </>
     )}
